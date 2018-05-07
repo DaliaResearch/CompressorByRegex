@@ -35,7 +35,11 @@ module CompressorByRegex
         end
 
         regexps.map do |regex|
-          "/^#{regex}$/"
+          if regex =~ /[^a-zA-Z0-9]/
+            "/^#{regex}$/"
+          else
+            regex
+          end
         end
       end
   end
